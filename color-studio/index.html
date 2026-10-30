@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Color Studio: Room Paint Color Visualizer | Best Painters in Denver</title>
+<meta name="description" content="Free room color visualizer: paint walls, trim, ceiling and door with original swatches, then switch window direction, time of day and snow light. See LRV and contrast.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.bestpaintersindenver.com/color-studio/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<meta name="theme-color" content="#4FD8FF">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Best Painters in Denver">
+<meta property="og:title" content="Color Studio: Room Paint Color Visualizer | Best Painters in Denver">
+<meta property="og:description" content="Free room color visualizer: paint walls, trim, ceiling and door with original swatches, then switch window direction, time of day and snow light. See LRV and contrast.">
+<meta property="og:url" content="https://www.bestpaintersindenver.com/color-studio/">
+<meta property="og:image" content="https://www.bestpaintersindenver.com/images/og-best-painters-denver.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="geo.region" content="US-CO">
+<meta name="geo.placename" content="Denver">
+
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.studio{display:grid;gap:22px}
+@media(min-width:1000px){.studio{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+.stage{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:12px;box-shadow:var(--shadow);position:sticky;top:96px;align-self:start}
+@media(max-width:999px){.stage{position:static}}
+svg.room{width:100%;height:auto;display:block;border-radius:10px}
+svg.room [data-s]{cursor:pointer;transition:fill .25s}
+svg.room [data-s].on{stroke:#B0573E;stroke-width:3;stroke-dasharray:8 6}
+.st-active{font-weight:600;margin:10px 4px 2px}
+.st-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.st-tabs button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:#FFFDF9;border-radius:8px;padding:9px 12px;font:inherit;font-size:.92rem;cursor:pointer}
+.st-tabs button i{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.15);display:inline-block}
+.st-tabs button[aria-selected=true]{border-color:var(--clay);box-shadow:inset 0 0 0 1px var(--clay);font-weight:600}
+.st-lib h4{font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.st-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+@media(min-width:560px){.st-row{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.sw{border:1px solid rgba(0,0,0,.12);border-radius:8px;height:62px;cursor:pointer;position:relative;padding:0;display:flex;align-items:flex-end;overflow:hidden}
+.sw span{display:block;width:100%;background:rgba(255,253,248,.92);font-size:.66rem;line-height:1.15;padding:3px 4px;text-align:left;color:#1E2838}
+.sw.cur{outline:3px solid var(--clay);outline-offset:2px}
+.sw:focus-visible{outline:3px solid var(--sage);outline-offset:2px}
+.st-panel{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:16px;margin-bottom:14px}
+.st-panel h3{font-size:1.05rem;margin:0 0 8px}
+.st-read table{font-size:.86rem}.st-read th i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;border:1px solid rgba(0,0,0,.15);vertical-align:-1px}
+.st-read tr.cur td,.st-read tr.cur th{background:#FBF1EC}
+.st-warn{font-size:.93rem;background:var(--sage-l);border-radius:10px;padding:12px 14px;margin-top:10px}.st-warn p{margin:0 0 6px}.st-warn p:last-child{margin:0}
+#st-hexform{display:flex;gap:8px;flex-wrap:wrap}#st-hexform input{flex:1;min-width:120px;padding:10px;border:1px solid #CFC5B6;border-radius:8px;font:inherit}
+.st-err{color:#9B2C1F;font-weight:600}
+#st-hexmsg{font-size:.9rem;margin:8px 0 0;min-height:1.2em}
+.st-acts{display:flex;flex-wrap:wrap;gap:8px}
+.st-acts .btn{padding:10px 14px;font-size:.93rem}
+#st-saved{font-size:.88rem;color:var(--muted);margin:8px 0 0;min-height:1.2em}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{border:1px solid var(--rule);background:#FFFDF9;border-radius:8px;padding:8px 12px;font:inherit;font-size:.9rem;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["HousePainter","LocalBusiness"],"@id":"https://www.bestpaintersindenver.com/#painterhotline","name":"Painter Hotline","alternateName":"Best Painters in Denver (Painter Hotline)","url":"https://www.bestpaintersindenver.com/","telephone":"+17202085645","email":"quote@painterhotline.com","logo":"https://www.bestpaintersindenver.com/images/brand/logo.png","image":"https://www.bestpaintersindenver.com/images/og-best-painters-denver.jpg","address":{"@type":"PostalAddress","addressLocality":"Denver","addressRegion":"CO","addressCountry":"US"},"areaServed":[{"@type":"City","name":"Denver"},{"@type":"AdministrativeArea","name":"Denver metro area, Colorado"}],"sameAs":["https://painterhotline.com/"],"knowsAbout":["interior painting","exterior painting","paint color consultation","surface preparation","primer selection","cabinet refinishing"],"slogan":"Best is a standard, not a badge.","hasOfferCatalog":{"@type":"OfferCatalog","name":"Painting and color services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Paint color consultation","url":"https://www.bestpaintersindenver.com/color-consultation/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fine-finish interior painting","url":"https://www.bestpaintersindenver.com/fine-finish-interior-painting/"}}]}},{"@type":"WebSite","@id":"https://www.bestpaintersindenver.com/#site","url":"https://www.bestpaintersindenver.com/","name":"Best Painters in Denver","publisher":{"@id":"https://www.bestpaintersindenver.com/#painterhotline"},"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.bestpaintersindenver.com/color-studio/#page","url":"https://www.bestpaintersindenver.com/color-studio/","name":"Color Studio: Room Paint Color Visualizer | Best Painters in Denver","description":"Free room color visualizer: paint walls, trim, ceiling and door with original swatches, then switch window direction, time of day and snow light. See LRV and contrast.","isPartOf":{"@id":"https://www.bestpaintersindenver.com/#site"},"about":{"@id":"https://www.bestpaintersindenver.com/#painterhotline"},"inLanguage":"en-US","dateModified":"2026-10-30","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".lede",".answer"]},"breadcrumb":{"@id":"https://www.bestpaintersindenver.com/color-studio/#crumbs"}},{"@type":"BreadcrumbList","@id":"https://www.bestpaintersindenver.com/color-studio/#crumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.bestpaintersindenver.com/"},{"@type":"ListItem","position":2,"name":"Color Studio","item":"https://www.bestpaintersindenver.com/color-studio/"}]},{"@type":"FAQPage","@id":"https://www.bestpaintersindenver.com/color-studio/#faq","mainEntity":[{"@type":"Question","name":"Are these real paint colors?","acceptedAnswer":{"@type":"Answer","text":"They're our own named swatches, defined by hex values, chosen to represent common color families. They are not any manufacturer's colors. When you're ready, we match your favorites to real products from all major brands and test samples on your walls."}},{"@type":"Question","name":"How accurate is the light simulation?","acceptedAnswer":{"@type":"Answer","text":"It's an approximation that shows the direction of change: cooler and dimmer for north light, warmer for south, warm mornings for east and amber evenings for west. Screens vary, so always confirm with a painted sample in the actual room."}},{"@type":"Question","name":"What is LRV?","acceptedAnswer":{"@type":"Answer","text":"Light Reflectance Value: roughly how much light a color reflects, on a scale from 0 (black) to 100 (pure white). The Studio estimates it from each color's luminance. Lower numbers make a room feel darker and more enclosed."}},{"@type":"Question","name":"Can I save my palette?","acceptedAnswer":{"@type":"Answer","text":"Yes. Save keeps it in this browser on this device, Copy puts it on your clipboard, and 'Book a consult with this palette' carries it into the booking form."}}]},{"@type":"WebApplication","@id":"https://www.bestpaintersindenver.com/color-studio/#app","name":"Color Studio room visualizer","applicationCategory":"DesignApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@id":"https://www.bestpaintersindenver.com/#painterhotline"},"url":"https://www.bestpaintersindenver.com/color-studio/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+<div class="wrap">
+<a class="brand" href="/" aria-label="Best Painters in Denver home"><img src="/images/brand/logo.svg" width="320" height="64" alt="Best Painters in Denver, a Painter Hotline color and finish studio"></a>
+<nav class="nav" aria-label="Main"><ul><li><a href="/our-standards/">Standards</a></li><li><a href="/project-gallery/">Gallery</a></li><li><a href="/fine-finish-interior-painting/">Fine finish</a></li><li><a href="/color-studio/" aria-current="page">Color Studio</a></li><li><a href="/color-consultation/">Color consult</a></li><li><a href="/journal/">Journal</a></li><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li></ul></nav>
+<a class="btn btn-clay callbtn" href="tel:+17202085645">Call 720-208-5645</a>
+<button class="ham" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="tray"><span></span></button>
+</div>
+<nav class="tray" id="tray" aria-label="Mobile"><ul><li><a href="/our-standards/">Standards</a></li><li><a href="/project-gallery/">Gallery</a></li><li><a href="/fine-finish-interior-painting/">Fine finish</a></li><li><a href="/color-studio/">Color Studio</a></li><li><a href="/color-consultation/">Color consult</a></li><li><a href="/journal/">Journal</a></li><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a class="btn btn-clay" href="tel:+17202085645">Call or text 720-208-5645</a></li></ul></nav>
+</header>
+<nav class="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Color Studio</li></ol></nav>
+<main id="main">
+
+<section class="pagehead"><div class="wrap">
+<p class="eyebrow">Color Studio</p>
+<h1>Paint a room in seconds, then change the light</h1>
+<p class="lede">Choose a surface, tap a swatch, and switch the window direction and time of day. It&rsquo;s a sketchpad for your palette before you test real samples.</p>
+</div></section>
+<section style="padding-top:6px"><div class="wrap">
+<div class="studio" id="studio">
+<div class="stage">
+<svg class="room" viewBox="0 0 800 520" role="img" aria-labelledby="room-t room-d">
+<title id="room-t">Room preview</title><desc id="room-d">A simple living room with side walls, a back wall, ceiling, trim, a window and a door. Colors change as you choose swatches.</desc>
+<polygon data-s="ceiling" points="0,0 800,0 610,105 190,105"/>
+<polygon data-s="walls" points="0,0 190,105 190,405 0,520"/>
+<polygon data-s="walls" points="800,0 610,105 610,405 800,520"/>
+<rect data-s="accent" x="190" y="105" width="420" height="300"/>
+<polygon points="0,0 190,105 190,405 0,520" fill="#000" opacity=".05" pointer-events="none"/>
+<polygon points="0,520 190,405 610,405 800,520" fill="#B48A62"/>
+<g stroke="#9C7553" stroke-width="2" opacity=".55" pointer-events="none"><line x1="90" y1="465" x2="710" y2="465"/><line x1="140" y1="435" x2="660" y2="435"/><line x1="40" y1="495" x2="760" y2="495"/></g>
+<polygon data-s="trim" points="0,507 190,397 190,405 0,520"/>
+<polygon data-s="trim" points="800,507 610,397 610,405 800,520"/>
+<rect data-s="trim" x="190" y="396" width="420" height="10"/>
+<polygon data-s="trim" points="40,118 150,160 150,330 40,368"/>
+<polygon id="glow" points="52,134 138,167 138,320 52,350" fill="#DCE8F5"/>
+<g stroke="#FFFFFF" stroke-width="4" pointer-events="none" opacity=".9"><line x1="95" y1="150" x2="95" y2="336"/><line x1="52" y1="242" x2="138" y2="243"/></g>
+<polygon points="52,134 138,167 138,320 52,350" fill="url(#beam)" pointer-events="none" opacity=".35"/>
+<defs><linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<polygon data-s="trim" points="660,170 740,140 740,470 660,425"/>
+<polygon data-s="door" points="670,180 730,158 730,458 670,420"/>
+<circle cx="680" cy="312" r="5" fill="#C9A45C" pointer-events="none"/>
+<rect x="320" y="170" width="160" height="110" fill="#FFFDF8" stroke="#3B3B3B" stroke-width="6" pointer-events="none"/>
+<g pointer-events="none"><polygon points="330,270 380,215 420,250 445,228 470,270" fill="#9AAE97"/><circle cx="440" cy="200" r="12" fill="#D7A84B"/></g>
+<g pointer-events="none"><rect x="270" y="330" width="260" height="62" rx="14" fill="#7A7F86"/><rect x="258" y="312" width="284" height="40" rx="16" fill="#8A9097"/><rect x="250" y="340" width="34" height="56" rx="10" fill="#6C7177"/><rect x="516" y="340" width="34" height="56" rx="10" fill="#6C7177"/><rect x="292" y="320" width="56" height="34" rx="8" fill="#C0654A" opacity=".85"/></g>
+</svg>
+<p class="st-active" aria-live="polite"></p>
+<fieldset class="fld" style="margin-top:8px"><legend>Window faces</legend><div class="opts">
+<label><input type="radio" name="st-exp" value="north" checked> North</label><label><input type="radio" name="st-exp" value="south"> South</label><label><input type="radio" name="st-exp" value="east"> East</label><label><input type="radio" name="st-exp" value="west"> West</label></div></fieldset>
+<fieldset class="fld" style="margin-top:8px"><legend>Time of day</legend><div class="opts">
+<label><input type="radio" name="st-time" value="morning"> Morning</label><label><input type="radio" name="st-time" value="midday" checked> Midday</label><label><input type="radio" name="st-time" value="evening"> Evening</label>
+<label><input type="checkbox" id="st-snow"> Snow outside</label></div></fieldset>
+</div>
+<div>
+<div class="st-panel"><h3>1. Choose a surface</h3><div class="st-tabs" role="tablist" aria-label="Surface"></div>
+<h3 style="margin-top:6px">Or start from a palette</h3><div class="presets"><button type="button" data-preset="Quiet Wash Park">Quiet Wash Park</button><button type="button" data-preset="Foothill Modern">Foothill Modern</button><button type="button" data-preset="Red Rocks Warmth">Red Rocks Warmth</button><button type="button" data-preset="Color-Drenched Study">Color-drenched study</button></div></div>
+<div class="st-panel"><h3>2. Pick a color</h3><div class="st-lib"></div>
+<h4 style="font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px">Have a hex code?</h4>
+<form id="st-hexform"><label class="hp" for="st-hex">Hex color</label><input id="st-hex" type="text" inputmode="text" maxlength="7" placeholder="#9AAE97" autocomplete="off"><button class="btn btn-line" type="submit" style="padding:10px 14px">Apply</button></form><p id="st-hexmsg" aria-live="polite"></p></div>
+<div class="st-panel"><h3>3. Read the room</h3><div class="st-read tscroll"></div><div class="st-warn" aria-live="polite"></div></div>
+<div class="st-panel"><h3>4. Keep it</h3><div class="st-acts"><a class="btn btn-clay" id="st-book" href="/book-a-color-consult/">Book a consult with this palette</a><button class="btn btn-line" type="button" id="st-copy">Copy palette</button><button class="btn btn-line" type="button" id="st-save">Save</button><button class="btn btn-line" type="button" id="st-reset">Reset</button></div><p id="st-saved" aria-live="polite"></p></div>
+</div>
+</div>
+<noscript><p class="answer"><strong>JavaScript is off</strong>The Color Studio needs JavaScript. You can still <a href="/book-a-color-consult/">book a color consult</a>.</p></noscript>
+</div></section>
+<section class="band"><div class="wrap prose">
+<div class="answer"><strong>How to use it well</strong>Set the window direction first, because it changes everything else. Pick the wall color, then the trim, then the ceiling. Use the readout: if wall and trim are nearly the same lightness the room will look soft and tonal; high contrast looks crisp but shows every line.</div>
+<h2>About the swatches</h2>
+<p>The swatches are our own, named for places around Denver: Wash Park Linen, Cherry Creek Sage, Sloan&rsquo;s Lake Blue, Red Rocks Clay. They&rsquo;re hex values chosen to represent color families, not copies of any manufacturer&rsquo;s chips. We paint with all major brands, including Sherwin-Williams, Benjamin Moore, Behr, Valspar and PPG, and we match your favorite to a real product during a <a href="/color-consultation/">color consultation</a>.</p>
+<h2>Why the light buttons matter in Denver</h2>
+<p>Denver sits near 39.7&deg; north. At noon on the winter solstice the sun is only about 27&deg; above the horizon, so winter light comes in low and deep through south and west windows; at the summer solstice it&rsquo;s about 74&deg; and barely reaches in. North rooms never get direct sun at all. The full explanation is in our <a href="/journal/denver-light-room-color-guide/">room-by-room light guide</a>.</p>
+<p class="note">Screens and printers can&rsquo;t reproduce paint exactly. Use the Studio to narrow choices, then judge large painted samples on your own walls.</p>
+</div></section>
+<section><div class="wrap"><div class="cta"><div><h2>Found a palette you like?</h2><p>Bring it to a color consult and we&rsquo;ll test it in your real light.</p></div><div class="btns" style="margin:0"><a class="btn btn-clay" href="tel:+17202085645">Call 720-208-5645</a><a class="btn btn-line" href="/contact/">Request an estimate</a></div></div></div></section>
+
+<section class="faq-sec"><div class="wrap"><h2 id="questions">Questions people ask</h2><div class="faq"><details><summary>Are these real paint colors?</summary><div class="a"><p>They're our own named swatches, defined by hex values, chosen to represent common color families. They are not any manufacturer's colors. When you're ready, we match your favorites to real products from all major brands and test samples on your walls.</p></div></details><details><summary>How accurate is the light simulation?</summary><div class="a"><p>It's an approximation that shows the direction of change: cooler and dimmer for north light, warmer for south, warm mornings for east and amber evenings for west. Screens vary, so always confirm with a painted sample in the actual room.</p></div></details><details><summary>What is LRV?</summary><div class="a"><p>Light Reflectance Value: roughly how much light a color reflects, on a scale from 0 (black) to 100 (pure white). The Studio estimates it from each color's luminance. Lower numbers make a room feel darker and more enclosed.</p></div></details><details><summary>Can I save my palette?</summary><div class="a"><p>Yes. Save keeps it in this browser on this device, Copy puts it on your clipboard, and 'Book a consult with this palette' carries it into the booking form.</p></div></details></div></div></section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="cols">
+<div><img class="flogo" src="/images/brand/logo.svg" width="280" height="56" alt="Best Painters in Denver logo" loading="lazy">
+<p style="margin-top:14px">Painter Hotline's Denver color and finish studio. Interior, exterior and cabinet painting by specialist crews, with a written 5-year workmanship warranty.</p>
+<p><a href="tel:+17202085645"><b>720-208-5645</b></a><br><span data-mu="cXVvdGU=" data-md="cGFpbnRlcmhvdGxpbmUuY29t">quote [at] painterhotline [dot] com</span></p></div>
+<div><h4>Studio</h4><ul><li><a href="/our-standards/">Our standards</a></li><li><a href="/project-gallery/">Project gallery</a></li><li><a href="/fine-finish-interior-painting/">Fine-finish interiors</a></li><li><a href="/about/">About</a></li></ul></div>
+<div><h4>Color</h4><ul><li><a href="/color-studio/">Color Studio</a></li><li><a href="/color-consultation/">Color consultation</a></li><li><a href="/book-a-color-consult/">Book a color consult</a></li><li><a href="/journal/">Journal</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+</div>
+<div class="foot-end"><span>&copy; 2026 Painter Hotline. Headquartered in Denver, Colorado. Fully insured.</span><span>Website by <a href="https://eyetoad.com/" rel="noopener">Eye To Ad Media</a></span></div>
+</div>
+<div class="heartline"><span class="hb" aria-hidden="true">&#10084;</span><a href="https://eyetoad.com/" rel="noopener">Need a website?</a></div>
+</footer>
+<div class="mbar"><a class="btn btn-clay" href="tel:+17202085645">Call 720-208-5645</a><a class="btn btn-line" href="/contact/">Get an estimate</a></div>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/hue.js" defer></script>
+<script src="/assets/studio.js" defer></script>
+</body>
+</html>

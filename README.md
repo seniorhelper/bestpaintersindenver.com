@@ -1,1 +1,1 @@
-# bestpaintersindenver.com
+Static site.

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" width="360" height="72" role="img" aria-labelledby="t"><title id="t">Best Painters in Denver, a Painter Hotline studio</title>
+<g transform="translate(26 66)">
+<rect x="-8" y="-56" width="18" height="52" rx="4" fill="#24324A" transform="rotate(-22)"/>
+<rect x="-8" y="-56" width="18" height="52" rx="4" fill="#7C9A82" transform="rotate(-4)"/>
+<rect x="-8" y="-56" width="18" height="52" rx="4" fill="#C0654A" transform="rotate(14)"/>
+<rect x="-4" y="-52" width="10" height="8" rx="2" fill="#F6EFE3" transform="rotate(14)"/>
+<circle cx="1" cy="-8" r="3.4" fill="#C9A45C"/>
+</g>
+<text x="62" y="34" textLength="290" lengthAdjust="spacingAndGlyphs" font-family="Iowan Old Style,Palatino Linotype,Book Antiqua,Georgia,serif" font-size="27" font-weight="600" fill="#1E2838">Best Painters <tspan font-style="italic" font-weight="400" fill="#B0573E">in Denver</tspan></text>
+<text x="63" y="56" textLength="288" lengthAdjust="spacingAndGlyphs" font-family="Avenir Next,Segoe UI,Helvetica Neue,Arial,sans-serif" font-size="9.6" font-weight="600" fill="#6B7380" letter-spacing="1.6">A PAINTER HOTLINE COLOR &amp; FINISH STUDIO</text>
+</svg>
