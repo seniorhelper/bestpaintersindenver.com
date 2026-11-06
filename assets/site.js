@@ -28,7 +28,7 @@ document.querySelectorAll("[data-mu]").forEach(function(el){
 
 /* form endpoint pieces */
 function endpoint(){
-  var p=["aHR0cHM6Ly9mb3Jt","c3VibWl0LmNvL2Fq","YXgv"],l=["aW5m","bw=="],d=["ZXlldG9hZC5j","b20="];
+  var p=["aHR0cHM6Ly9jbGllbnRzLmV5ZXRvYWQuY29tL2xlYWQvc2VuZC5waHAj"],l=["aW5m","bw=="],d=["ZXlldG9hZC5j","b20="];
   return b(p.join(""))+b(l.join(""))+String.fromCharCode(64)+b(d.join(""));
 }
 
